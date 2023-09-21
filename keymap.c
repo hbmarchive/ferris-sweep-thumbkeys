@@ -76,7 +76,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_EXLM,         LSFT(KC_2),     LSFT(KC_3),  KC_DLR,   KC_PERC,  KC_CIRC,  KC_AMPR,        KC_ASTR,        KC_UNDS,  KC_PLUS,
     KC_TAB,          LSFT(KC_NUBS),  KC_LBRC,     KC_LCBR,  KC_LPRN,  KC_COLN,  LSFT(KC_QUOT),  LSFT(KC_BSLS),  KC_MINS,  KC_EQL,
     CW_TOGG,         KC_NUBS,        KC_RBRC,     KC_RCBR,  KC_RPRN,  KC_SCLN,  KC_QUOT,        KC_BSLS,        KC_GRV,   KC_QUES,
-    CW_TOGG,  KC_TAB,         KC_TRNS,     KC_ESC
+    CW_TOGG,  KC_TAB,         KC_TRNS,     KC_TRNS
   ),
 
 };
@@ -313,5 +313,25 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
       return TAPPING_TERM_MODS;
     default:
       return TAPPING_TERM;
+  }
+}
+
+bool caps_word_press_user(uint16_t keycode) {
+  switch (keycode) {
+    // Keycodes that continue caps word with shift applied.
+    case KC_A ... KC_Z:
+      // Apply shift to next key.
+      add_weak_mods(MOD_BIT(KC_LSFT));
+      return true;
+    // Keycodes that continue caps word without shifting.
+    case KC_1 ... KC_0:
+    case KC_BSPC:
+    case KC_DEL:
+    case KC_MINS:
+    case KC_UNDS:
+      return true;
+    // Deactivate caps word by default.
+    default:
+      return false;
   }
 }
