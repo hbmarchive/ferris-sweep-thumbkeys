@@ -2,10 +2,11 @@
 
 enum my_layers {
   BASE_LAYER,
+  SYM_LAYER,
   NAV_LAYER,
   NUM_LAYER,
   SCUT_LAYER,
-  SYM_LAYER
+  MOUSE_LAYER
 };
 
 enum my_keycodes {
@@ -46,9 +47,9 @@ static bool kc_del_registered = false;
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [BASE_LAYER] = LAYOUT_split_3x5_2(
-    KC_Q,           LCTL_T(KC_W),           LALT_T(KC_F),           LGUI_T(KC_P),   KC_B,  KC_J,  LGUI_T(KC_L),  LALT_T(KC_U),  LCTL_T(KC_Y),  KC_BSPC,
-    KC_A,           KC_R,                   KC_S,                   KC_T,           KC_G,  KC_M,  KC_N,          KC_E,          KC_I,          KC_O,
-    KC_Z,           KC_X,                   KC_C,                   KC_D,           KC_V,  KC_K,  KC_H,          KC_COMM,       KC_DOT,        OSL(SCUT_LAYER),
+    KC_Q,          LCTL_T(KC_W),           LALT_T(KC_F),           LGUI_T(KC_P),   KC_B,  KC_J,  LGUI_T(KC_L),  LALT_T(KC_U),  LCTL_T(KC_Y),  KC_BSPC,
+    KC_A,          KC_R,                   KC_S,                   KC_T,           KC_G,  KC_M,  KC_N,          KC_E,          KC_I,          KC_O,
+    LT(MOUSE_LAYER, KC_Z),          KC_X,                   KC_C,                   KC_D,           KC_V,  KC_K,  KC_H,          KC_COMM,       KC_DOT,        OSL(SCUT_LAYER),
     OSM(MOD_LSFT),  LT(NAV_LAYER, KC_SPC),  LT(NUM_LAYER, KC_ENT),  OSL(SYM_LAYER)
   ),
 
@@ -60,9 +61,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [NAV_LAYER] = LAYOUT_split_3x5_2(
-    KC_NO,    KC_PSCR,  M_ISCB,   M_ISWIN,  KC_INS,   M_XTAB,   M_PDESK,  LCTL(KC_TAB),  M_ALTT,   M_NDESK,
-    KC_NO,    KC_MNXT,  KC_MPLY,  KC_VOLU,  KC_BRIU,  KC_WH_U,  KC_LEFT,  KC_DOWN,       KC_UP,    KC_RGHT,
-    KC_NO,    KC_MPRV,  KC_MUTE,  KC_VOLD,  KC_BRID,  KC_WH_D,  KC_HOME,  KC_PGDN,       KC_PGUP,  KC_END,
+    KC_NO,    KC_PSCR,  M_ISCB,   M_ISWIN,  KC_INS,   M_XTAB,  M_PDESK,  LCTL(KC_TAB),  M_ALTT,   M_NDESK,
+    KC_NO,    KC_MNXT,  KC_MPLY,  KC_VOLU,  KC_BRIU,  KC_NO,   KC_LEFT,  KC_DOWN,       KC_UP,    KC_RGHT,
+    KC_NO,    KC_MPRV,  KC_MUTE,  KC_VOLD,  KC_BRID,  KC_NO,   KC_HOME,  KC_PGDN,       KC_PGUP,  KC_END,
     KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS
   ),
 
@@ -78,6 +79,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,   M_APP1,      M_APP2,      M_APP3,            M_APP4,      KC_NO,  KC_NO,       M_EMOJI,     KC_NO,       KC_NO,
     KC_CAPS,  LCTL(KC_X),  LCTL(KC_C),  LSFT(LCTL(KC_C)),  LCTL(KC_V),  KC_NO,  KC_NO,       KC_NO,       M_DDS,       KC_SLSH,
     KC_TRNS,  KC_TRNS,     KC_TRNS,     KC_TRNS
+  ),
+
+  [MOUSE_LAYER] = LAYOUT_split_3x5_2(
+    KC_NO,    KC_NO,    KC_NO,    KC_NO,   KC_NO,  KC_NO,    KC_NO,    KC_MS_U,  KC_NO,    KC_NO,
+    KC_NO,    KC_NO,    KC_NO,    KC_NO,   KC_NO,  KC_WH_U,  KC_MS_L,  KC_MS_D,  KC_MS_R,  KC_NO,
+    KC_NO,    KC_NO,    KC_NO,    KC_NO,   KC_NO,  KC_WH_D,  KC_NO,    KC_NO,    KC_NO,    KC_NO,
+    KC_TRNS,  KC_TRNS,  KC_BTN1,  KC_BTN2
   ),
 
 };
