@@ -10,8 +10,6 @@ enum my_layers {
 
 enum my_keycodes {
     M_ALTT = SAFE_RANGE,
-    M_NDESK,
-    M_PDESK,
     M_APP1,
     M_APP2,
     M_APP3,
@@ -19,9 +17,14 @@ enum my_keycodes {
     M_APP5,
     M_LIKE,
     M_1PASS,
+    M_HIDE,
+    M_MAX,
+    M_CLOSE,
+    M_NDESK,
+    M_PDESK,
     M_NTRM,
     M_EMOJI,
-    M_ISCB,
+    M_ISCROS,
     M_ISWIN
 };
 
@@ -56,10 +59,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [NAV_LAYER] = LAYOUT_split_3x5_2(
-    KC_NO,    KC_PSCR,  M_ISCB,   M_ISWIN,         KC_INS,   KC_NO,    M_PDESK,  LCTL(KC_TAB),  M_ALTT,   M_NDESK,
-    KC_NO,    KC_MNXT,  KC_MPLY,  KC_VOLU,         KC_BRIU,  KC_WH_U,  KC_LEFT,  KC_DOWN,       KC_UP,    KC_RGHT,
-    KC_NO,    KC_MPRV,  KC_MUTE,  KC_VOLD,         KC_BRID,  KC_WH_D,  KC_HOME,  KC_PGDN,       KC_PGUP,  KC_END,
-    KC_TRNS,  KC_TRNS,  KC_ESC,   OSL(SCUT_LAYER)
+    KC_PSCR,  KC_MNXT,     KC_MPLY,     KC_VOLU,           KC_BRIU,     KC_NO,    M_PDESK,  LCTL(KC_TAB),  M_ALTT,   M_NDESK,
+    M_ISCROS,   KC_MPRV,     KC_MUTE,     KC_VOLD,           KC_BRID,     KC_WH_U,  KC_LEFT,  KC_DOWN,       KC_UP,    KC_RGHT,
+    M_ISWIN,  LCTL(KC_X),  LCTL(KC_C),  LSFT(LCTL(KC_C)),  LCTL(KC_V),  KC_WH_D,  KC_HOME,  KC_PGDN,       KC_PGUP,  KC_END,
+    KC_TRNS,  KC_TRNS,     KC_ESC,      OSL(SCUT_LAYER)
   ),
 
   [NUM_LAYER] = LAYOUT_split_3x5_2(
@@ -70,10 +73,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [SCUT_LAYER] = LAYOUT_split_3x5_2(
-    KC_NO,    KC_NO,       M_NTRM,      KC_NO,             KC_NO,       M_LIKE,  HYPR(KC_M),  HYPR(KC_A),  HYPR(KC_K),  KC_NO,
-   M_APP4,    M_APP1,      M_APP2,      M_1PASS,           M_APP3,      M_APP5,  KC_NO,       M_EMOJI,     KC_NO,       KC_NO,
-    KC_NO,    LCTL(KC_X),  LCTL(KC_C),  LSFT(LCTL(KC_C)),  LCTL(KC_V),  KC_NO,   KC_NO,       KC_NO,       KC_NO,       KC_NO,
-    KC_CAPS,  KC_TRNS,     KC_TRNS,     KC_TRNS
+    KC_NO,    M_NTRM,   KC_NO,    KC_NO,    M_LIKE,  KC_NO,  M_HIDE,  M_MAX,    M_CLOSE,  KC_NO,
+    M_APP1,   M_APP2,   M_APP3,   M_APP4,   M_APP5,  KC_NO,  KC_NO,   M_EMOJI,  KC_NO,    KC_NO,
+    KC_NO,    KC_NO,    KC_NO,    M_1PASS,  KC_NO,   KC_NO,  KC_NO,   KC_NO,    KC_NO,    KC_NO,
+    KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS
   )
 
 };
@@ -212,6 +215,45 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       }
       break;
+    case M_HIDE:
+      if (record->event.pressed) {
+        if (m_is_chromebook) {
+          SEND_STRING(SS_DOWN(X_LALT));
+          SEND_STRING(SS_TAP(X_MINS));
+          SEND_STRING(SS_UP(X_LALT));
+        } else {
+          SEND_STRING(SS_DOWN(X_LSFT)SS_DOWN(X_LCTL)SS_DOWN(X_LALT)SS_DOWN(X_LGUI));
+          SEND_STRING(SS_TAP(X_M));
+          SEND_STRING(SS_UP(X_LGUI)SS_UP(X_LALT)SS_UP(X_LCTL)SS_UP(X_LSFT));
+        }
+      }
+      break;
+    case M_MAX:
+      if (record->event.pressed) {
+        if (m_is_chromebook) {
+          SEND_STRING(SS_DOWN(X_LALT));
+          SEND_STRING(SS_TAP(X_EQL));
+          SEND_STRING(SS_UP(X_LALT));
+        } else {
+          SEND_STRING(SS_DOWN(X_LSFT)SS_DOWN(X_LCTL)SS_DOWN(X_LALT)SS_DOWN(X_LGUI));
+          SEND_STRING(SS_TAP(X_A));
+          SEND_STRING(SS_UP(X_LGUI)SS_UP(X_LALT)SS_UP(X_LCTL)SS_UP(X_LSFT));
+        }
+      }
+      break;
+    case M_CLOSE:
+      if (record->event.pressed) {
+        if (m_is_chromebook) {
+          SEND_STRING(SS_DOWN(X_LCTL)SS_DOWN(X_LSFT));
+          SEND_STRING(SS_TAP(X_W));
+          SEND_STRING(SS_UP(X_LSFT)SS_UP(X_LCTL));
+        } else {
+          SEND_STRING(SS_DOWN(X_LSFT)SS_DOWN(X_LCTL)SS_DOWN(X_LALT)SS_DOWN(X_LGUI));
+          SEND_STRING(SS_TAP(X_K));
+          SEND_STRING(SS_UP(X_LGUI)SS_UP(X_LALT)SS_UP(X_LCTL)SS_UP(X_LSFT));
+        }
+      }
+      break;
     case M_NDESK:
       if (record->event.pressed) {
         if (m_is_chromebook) {
@@ -260,7 +302,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       }
       break;
-    case M_ISCB:
+    case M_ISCROS:
       if (record->event.pressed) {
         m_is_chromebook = true;
       }
