@@ -2,19 +2,14 @@
 
 enum my_layers {
   BASE_LAYER,
+  SYM_LAYER,
   NAV_LAYER,
   NUM_LAYER,
-  SCUT_LAYER,
-  SYM_LAYER
+  SCUT_LAYER
 };
 
 enum my_keycodes {
-    M_ESCQ = SAFE_RANGE,
-    M_ESCW,
-    M_ALTT,
-    M_NDESK,
-    M_PDESK,
-    M_XTAB,
+    M_ALTT = SAFE_RANGE,
     M_APP1,
     M_APP2,
     M_APP3,
@@ -22,9 +17,14 @@ enum my_keycodes {
     M_APP5,
     M_LIKE,
     M_1PASS,
+    M_HIDE,
+    M_MAX,
+    M_CLOSE,
+    M_NDESK,
+    M_PDESK,
     M_NTRM,
     M_EMOJI,
-    M_ISCB,
+    M_ISCROS,
     M_ISWIN
 };
 
@@ -45,39 +45,39 @@ static bool kc_del_registered = false;
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [BASE_LAYER] = LAYOUT_split_3x5_2(
-    KC_Q,           LCTL_T(KC_W),  LALT_T(KC_F),  LGUI_T(KC_P),  KC_B,     KC_J,           LGUI_T(KC_L),  LALT_T(KC_U),  LCTL_T(KC_Y),  KC_BSPC,
-    KC_A,           KC_R,          KC_S,          KC_T,          KC_G,     KC_M,           KC_N,          KC_E,          KC_I,          KC_O,
-    KC_Z,           KC_X,          KC_C,          KC_D,          KC_V,     KC_K,           KC_H,          KC_COMM,       KC_DOT,        OSL(SCUT_LAYER),
-    OSM(MOD_LSFT),  LT(NAV_LAYER, KC_SPC),       LT(NUM_LAYER, KC_ENT),  OSL(SYM_LAYER)
-  ),
-
-  [NAV_LAYER] = LAYOUT_split_3x5_2(
-    KC_NO,    KC_PSCR,  M_ISCB,   M_ISWIN,  KC_INS,   M_XTAB,  M_PDESK,  LCTL(KC_TAB),  M_ALTT,   M_NDESK,
-    KC_NO,    KC_MNXT,  KC_MPLY,  KC_VOLU,  KC_BRIU,  KC_WH_U,   KC_LEFT,  KC_DOWN,       KC_UP,    KC_RGHT,
-    KC_CAPS,  KC_MPRV,  KC_MUTE,  KC_VOLD,  KC_BRID,  KC_WH_D,   KC_HOME,  KC_PGDN,       KC_PGUP,  KC_END,
-    KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS
-  ),
-
-  [NUM_LAYER] = LAYOUT_split_3x5_2(
-    KC_PAST,  KC_1,     KC_2,     KC_3,    KC_PPLS,  KC_NO,  KC_F1,  KC_F2,  KC_F3,  KC_NO,
-    KC_PSLS,  KC_4,     KC_5,     KC_6,    KC_PMNS,  KC_NO,  KC_F4,  KC_F5,  KC_F6,  KC_NO,
-    KC_0,     KC_7,     KC_8,     KC_9,    KC_DOT,   KC_NO,  KC_F7,  KC_F8,  KC_F9,  KC_F10,
-    KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS
-  ),
-
-  [SCUT_LAYER] = LAYOUT_split_3x5_2(
-    M_ESCQ,   M_ESCW,      M_NTRM,      M_1PASS,           M_LIKE,      KC_NO,  HYPR(KC_M),  HYPR(KC_A),  HYPR(KC_K),  KC_NO,
-    KC_ESC,   M_APP1,      M_APP2,      M_APP3,            M_APP4,      KC_NO,  KC_NO,       M_EMOJI,     KC_NO,       KC_NO,
-    KC_CAPS,  LCTL(KC_X),  LCTL(KC_C),  LSFT(LCTL(KC_C)),  LCTL(KC_V),  KC_NO,  KC_NO,       KC_NO,       KC_NO,       KC_SLSH,
-    KC_TRNS,  KC_TRNS,     KC_TRNS,     KC_TRNS
+    KC_Q,          LCTL_T(KC_W),           LALT_T(KC_F),           LGUI_T(KC_P),   KC_B,  KC_J,  LGUI_T(KC_L),  LALT_T(KC_U),  LCTL_T(KC_Y),  KC_BSPC,
+    KC_A,          KC_R,                   KC_S,                   KC_T,           KC_G,  KC_M,  KC_N,          KC_E,          KC_I,          KC_O,
+    KC_Z,          KC_X,                   KC_C,                   KC_D,           KC_V,  KC_K,  KC_H,          KC_COMM,       KC_DOT,        KC_SLSH,
+    OSM(MOD_LSFT),  LT(NAV_LAYER, KC_SPC),  LT(NUM_LAYER, KC_ENT),  OSL(SYM_LAYER)
   ),
 
   [SYM_LAYER] = LAYOUT_split_3x5_2(
-    KC_EXLM,         LSFT(KC_2),     LSFT(KC_3),  KC_DLR,   KC_PERC,  KC_CIRC,  KC_AMPR,        KC_ASTR,        KC_UNDS,  KC_PLUS,
-    KC_TAB,          LSFT(KC_NUBS),  KC_LBRC,     KC_LCBR,  KC_LPRN,  KC_COLN,  LSFT(KC_QUOT),  LSFT(KC_BSLS),  KC_MINS,  KC_EQL,
-    CW_TOGG,         KC_NUBS,        KC_RBRC,     KC_RCBR,  KC_RPRN,  KC_SCLN,  KC_QUOT,        KC_BSLS,        KC_GRV,   KC_QUES,
-    CW_TOGG,  KC_TAB,         KC_TRNS,     KC_ESC
+    KC_EXLM,  LSFT(KC_2),     LSFT(KC_3),  KC_DLR,   KC_PERC,  KC_CIRC,  KC_AMPR,        KC_ASTR,        KC_NO,    KC_NO,
+    KC_GRV,   LSFT(KC_NUBS),  KC_LBRC,     KC_LCBR,  KC_LPRN,  KC_COLN,  LSFT(KC_QUOT),  LSFT(KC_BSLS),  KC_UNDS,  KC_PLUS,
+    KC_CAPS,  KC_NUBS,        KC_RBRC,     KC_RCBR,  KC_RPRN,  KC_SCLN,  KC_QUOT,        KC_BSLS,        KC_MINS,  KC_EQL,
+    KC_TRNS,  KC_TRNS,        KC_TRNS,     KC_TRNS
   ),
+
+  [NAV_LAYER] = LAYOUT_split_3x5_2(
+    KC_PSCR,  KC_MNXT,     KC_MPLY,     KC_VOLU,           KC_BRIU,     KC_NO,    M_PDESK,  LCTL(KC_TAB),  M_ALTT,   M_NDESK,
+    M_ISCROS,   KC_MPRV,     KC_MUTE,     KC_VOLD,           KC_BRID,     KC_WH_U,  KC_LEFT,  KC_DOWN,       KC_UP,    KC_RGHT,
+    M_ISWIN,  LCTL(KC_X),  LCTL(KC_C),  LSFT(LCTL(KC_C)),  LCTL(KC_V),  KC_WH_D,  KC_HOME,  KC_PGDN,       KC_PGUP,  KC_END,
+    KC_TRNS,  KC_TRNS,     KC_ESC,      OSL(SCUT_LAYER)
+  ),
+
+  [NUM_LAYER] = LAYOUT_split_3x5_2(
+    KC_PAST,  KC_1,    KC_2,     KC_3,    KC_PPLS,  KC_NO,  KC_F1,  KC_F2,  KC_F3,  KC_BSPC,
+    KC_PSLS,  KC_4,    KC_5,     KC_6,    KC_PMNS,  KC_NO,  KC_F4,  KC_F5,  KC_F6,  KC_NO,
+    KC_0,     KC_7,    KC_8,     KC_9,    KC_DOT,   KC_NO,  KC_F7,  KC_F8,  KC_F9,  KC_F10,
+    CW_TOGG,  KC_TAB,  KC_TRNS,  KC_TRNS
+  ),
+
+  [SCUT_LAYER] = LAYOUT_split_3x5_2(
+    KC_NO,    M_NTRM,   KC_NO,    KC_NO,    M_LIKE,  KC_NO,  M_HIDE,  M_MAX,    M_CLOSE,  KC_NO,
+    M_APP1,   M_APP2,   M_APP3,   M_APP4,   M_APP5,  KC_NO,  KC_NO,   M_EMOJI,  KC_NO,    KC_NO,
+    KC_NO,    KC_NO,    KC_NO,    M_1PASS,  KC_NO,   KC_NO,  KC_NO,   KC_NO,    KC_NO,    KC_NO,
+    KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS
+  )
 
 };
 
@@ -109,20 +109,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           kc_del_registered = false;
           return false;
         }
-      }
-      break;
-    case M_ESCQ:
-      if (record->event.pressed) {
-        SEND_STRING(SS_TAP(X_ESC)":q!"SS_TAP(X_ENT));
-      } else {
-        layer_move(BASE_LAYER);
-      }
-      break;
-    case M_ESCW:
-      if (record->event.pressed) {
-        SEND_STRING(SS_TAP(X_ESC)":wq"SS_TAP(X_ENT));
-      } else {
-        layer_move(BASE_LAYER);
       }
       break;
     case M_ALTT:
@@ -229,6 +215,45 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       }
       break;
+    case M_HIDE:
+      if (record->event.pressed) {
+        if (m_is_chromebook) {
+          SEND_STRING(SS_DOWN(X_LALT));
+          SEND_STRING(SS_TAP(X_MINS));
+          SEND_STRING(SS_UP(X_LALT));
+        } else {
+          SEND_STRING(SS_DOWN(X_LSFT)SS_DOWN(X_LCTL)SS_DOWN(X_LALT)SS_DOWN(X_LGUI));
+          SEND_STRING(SS_TAP(X_M));
+          SEND_STRING(SS_UP(X_LGUI)SS_UP(X_LALT)SS_UP(X_LCTL)SS_UP(X_LSFT));
+        }
+      }
+      break;
+    case M_MAX:
+      if (record->event.pressed) {
+        if (m_is_chromebook) {
+          SEND_STRING(SS_DOWN(X_LALT));
+          SEND_STRING(SS_TAP(X_EQL));
+          SEND_STRING(SS_UP(X_LALT));
+        } else {
+          SEND_STRING(SS_DOWN(X_LSFT)SS_DOWN(X_LCTL)SS_DOWN(X_LALT)SS_DOWN(X_LGUI));
+          SEND_STRING(SS_TAP(X_A));
+          SEND_STRING(SS_UP(X_LGUI)SS_UP(X_LALT)SS_UP(X_LCTL)SS_UP(X_LSFT));
+        }
+      }
+      break;
+    case M_CLOSE:
+      if (record->event.pressed) {
+        if (m_is_chromebook) {
+          SEND_STRING(SS_DOWN(X_LCTL)SS_DOWN(X_LSFT));
+          SEND_STRING(SS_TAP(X_W));
+          SEND_STRING(SS_UP(X_LSFT)SS_UP(X_LCTL));
+        } else {
+          SEND_STRING(SS_DOWN(X_LSFT)SS_DOWN(X_LCTL)SS_DOWN(X_LALT)SS_DOWN(X_LGUI));
+          SEND_STRING(SS_TAP(X_K));
+          SEND_STRING(SS_UP(X_LGUI)SS_UP(X_LALT)SS_UP(X_LCTL)SS_UP(X_LSFT));
+        }
+      }
+      break;
     case M_NDESK:
       if (record->event.pressed) {
         if (m_is_chromebook) {
@@ -255,15 +280,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       }
       break;
-    case M_XTAB:
-      if (record->event.pressed) {
-        if (m_is_chromebook) {
-          SEND_STRING(SS_DOWN(X_LCTL)SS_TAP(X_W)SS_UP(X_LCTL));
-        } else {
-          SEND_STRING(SS_DOWN(X_LCTL)SS_TAP(X_F4)SS_UP(X_LCTL));
-        }
-      }
-      break;
     case M_NTRM:
       if (record->event.pressed) {
         if (m_is_chromebook) {
@@ -286,7 +302,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       }
       break;
-    case M_ISCB:
+    case M_ISCROS:
       if (record->event.pressed) {
         m_is_chromebook = true;
       }
@@ -313,5 +329,25 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
       return TAPPING_TERM_MODS;
     default:
       return TAPPING_TERM;
+  }
+}
+
+bool caps_word_press_user(uint16_t keycode) {
+  switch (keycode) {
+    // Keycodes that continue caps word with shift applied.
+    case KC_A ... KC_Z:
+      // Apply shift to next key.
+      add_weak_mods(MOD_BIT(KC_LSFT));
+      return true;
+    // Keycodes that continue caps word without shifting.
+    case KC_1 ... KC_0:
+    case KC_BSPC:
+    case KC_DEL:
+    case KC_MINS:
+    case KC_UNDS:
+      return true;
+    // Deactivate caps word by default.
+    default:
+      return false;
   }
 }
