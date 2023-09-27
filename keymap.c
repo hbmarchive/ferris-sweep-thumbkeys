@@ -60,8 +60,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [NAV_LAYER] = LAYOUT_split_3x5_2(
     KC_PSCR,  KC_MNXT,     KC_MPLY,     KC_VOLU,           KC_BRIU,     KC_NO,    M_PDESK,  LCTL(KC_TAB),  M_ALTT,   M_NDESK,
-    M_ISCROS,   KC_MPRV,     KC_MUTE,     KC_VOLD,           KC_BRID,     KC_WH_U,  KC_LEFT,  KC_DOWN,       KC_UP,    KC_RGHT,
-    M_ISWIN,  LCTL(KC_X),  LCTL(KC_C),  LSFT(LCTL(KC_C)),  LCTL(KC_V),  KC_WH_D,  KC_HOME,  KC_PGDN,       KC_PGUP,  KC_END,
+    KC_NO,   KC_MPRV,     KC_MUTE,     KC_VOLD,           KC_BRID,     KC_WH_U,  KC_LEFT,  KC_DOWN,       KC_UP,    KC_RGHT,
+    KC_NO,  LCTL(KC_X),  LCTL(KC_C),  LSFT(LCTL(KC_C)),  LCTL(KC_V),  KC_WH_D,  KC_HOME,  KC_PGDN,       KC_PGUP,  KC_END,
     KC_TRNS,  KC_TRNS,     KC_ESC,      OSL(SCUT_LAYER)
   ),
 
@@ -74,8 +74,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [SCUT_LAYER] = LAYOUT_split_3x5_2(
     KC_NO,    M_NTRM,   KC_NO,    KC_NO,    M_LIKE,  KC_NO,  M_HIDE,  M_MAX,    M_CLOSE,  KC_NO,
-    M_APP1,   M_APP2,   M_APP3,   M_APP4,   M_APP5,  KC_NO,  KC_NO,   M_EMOJI,  KC_NO,    KC_NO,
-    KC_NO,    KC_NO,    KC_NO,    M_1PASS,  KC_NO,   KC_NO,  KC_NO,   KC_NO,    KC_NO,    KC_NO,
+    M_APP1,   M_APP2,   M_APP3,   M_APP4,   M_APP5,  KC_NO,  KC_NO,   M_EMOJI,  KC_NO,    M_ISWIN,
+    KC_NO,    KC_NO,    KC_NO,    M_1PASS,  KC_NO,   KC_NO,  KC_NO,   KC_NO,    KC_NO,    M_ISCROS,
     KC_TRNS,  KC_TRNS,  KC_TRNS,  KC_TRNS
   )
 
