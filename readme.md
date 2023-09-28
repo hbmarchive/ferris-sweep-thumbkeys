@@ -5,6 +5,8 @@ Ferris Sweep. This layout uses the thumb keys for layer switching as well as for
 some important non-alphabetic keypresses, leaving the rest of the keyboard free
 of complications.
 
+![My Ferris Sweep](https://i.imgur.com/XRqipdX.png)
+
 The four thumbkeys are responsible for `Shift`, `Space`, `Enter` and `Sym` keys
 in the base layer. Both `Shift` and `Sym` are one-tap keys, the latter
 activating the **Sym Layer**, In addition, holding down `Space` activates the
@@ -35,40 +37,39 @@ support open source projects and communities.
 
 ### Base Layer
 
-![Base Layer](https://i.imgur.com/mufYFFF.png)
+![Base Layer](https://i.imgur.com/LwmRn8r.png)
 
 The base layer is set out in the Colemak Mod-DH format with a `Backspace` key at
 the top right-hand side instead of a semicolon key. Holding shift and pressing
 the `Backspace` key will produce `Delete`.
 
-In addition to the shortcuts mentioned in the introduction, the top row has home
-row modifier keys available:
+In addition to the shortcuts mentioned in the introduction, the bottom row has
+home row modifier keys available:
 
-* The `W` and `Y` keys produce `Ctrl` when held down
-* The `F` and `U` keys produce `Alt` (or `Option`) when held down
-* The `P` and `L` keys produce `Win` (or `Cmd` or `Search`) when held down
+* The `X` / `.` keys produce `Ctrl` when held down
+* The `C` / `,` keys produce `Alt` (or `Option`) when held down
+* The `D` / `H` keys produce `Win` (or `Cmd` or `Search`) when held down
 
 ### Sym Layer
 
-![Sym Layer](https://i.imgur.com/Q9iyJhA.png)
+![Sym Layer](https://i.imgur.com/wsbYv9L.png)
 
 This layer contains symbols that have been laid out based on the design of UK
 ISO keyboards. The top row has symbols usually found on the number keys. The
 symbols that usually appear on the right of the keyboard around the `Enter` key
 are on the right side. Braces and brackets are paired off on the left side
-alongside `\` and `|`. Finally, the grave and `Caps Lock` are on the far left
-underneath `!`.
+alongside `\` and `|`. Finally, the grave is on the far left underneath `!`.
 
 ### Num Layer
 
-![Num Layer](https://i.imgur.com/8SDUj43.png)
+![Num Layer](https://i.imgur.com/AhG56m0.png)
 
 This layer contains numbers in a keypad-like layout on the left-hand side of the
 keyboard. Function keys are available on the right-hand side.
 
 ### Nav Layer
 
-![Nav Layer](https://i.imgur.com/CxnoStB.png)
+![Nav Layer](https://i.imgur.com/98XJFgm.png)
 
 This layer contains navigation controls on the right-hand side of the keyboard.
 Media, volume and brightness controls are available on the left-hand side.
@@ -77,9 +78,11 @@ Two keys on the far left change the keyboard's shortcuts to be compatible with
 Windows and ChromeOS. On boot, the keyboard will start in Windows-mode by
 default.
 
+The `Caps Lock` key appears on the bottom left-hand side.
+
 ### Shortcuts Layer
 
-![Shortcuts Layer](https://i.imgur.com/dlCeh0o.png)
+![Shortcuts Layer](https://i.imgur.com/RrJ74hA.png)
 
 This layer contains a number of window and application shortcuts for Windows and
 ChromeOS. Windows shortcuts rely on AutoHotKey - I have included a sample script
