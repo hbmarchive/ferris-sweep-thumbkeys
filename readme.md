@@ -58,8 +58,7 @@ This layer contains symbols that have been laid out based on the design of UK
 ISO keyboards. The top row has symbols usually found on the number keys. The
 symbols that usually appear on the right of the keyboard around the `Enter` key
 are on the right side. Braces and brackets are paired off on the left side
-alongside `\` and `|`. Finally, the grave and `Caps Lock` are on the far left
-underneath `!`.
+alongside `\` and `|`. Finally, the grave is on the far left underneath `!`.
 
 ### Num Layer
 
@@ -78,6 +77,8 @@ Media, volume and brightness controls are available on the left-hand side.
 Two keys on the far left change the keyboard's shortcuts to be compatible with
 Windows and ChromeOS. On boot, the keyboard will start in Windows-mode by
 default.
+
+The `Caps Lock` key appears on the bottom left-hand side.
 
 ### Shortcuts Layer
 
